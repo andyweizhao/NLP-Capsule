@@ -1,6 +1,6 @@
-# Bridging Capsule Networks and Mature NLP Applications
+# Towards Scalable and Reliable Capsule Networks for Challenging NLP Applications
 
-Submission in ACL-19
+Accepted in ACL-19: https://arxiv.org/abs/1906.02829
 
 Requirements: Code is written in Python (2.7) and requires Tensorflow (1.4.1).
 
