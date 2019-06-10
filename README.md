@@ -110,4 +110,13 @@ Tst NDCG@1,3,5:  [0.7565329883570504, 0.6674559324640292, 0.6452839523583206]
 
 ```
 
-
+# Reference
+If you find our source code useful, please consider citing our work.
+```
+@misc{zhao2019capsule,
+Author = {Wei Zhao and Haiyun Peng and Steffen Eger and Erik Cambria and Min Yang},
+Title = {Towards Scalable and Reliable Capsule Networks for Challenging NLP Applications},
+Year = {2019},
+Eprint = {arXiv:1906.02829},
+}
+```
