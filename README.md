@@ -2,7 +2,7 @@
 
 Accepted in ACL-19: https://arxiv.org/abs/1906.02829
 
-Requirements: Code is written in Python (2.7) and requires Tensorflow (1.4.1).
+Requirements: Code is written in Python 3 and requires Pytorch.
 
 # Preparation
 For quick start, please refer to the [link](https://drive.google.com/open?id=1gPYAMyYo4YLrmx_Egc9wjCqzWx15D7U8) to download EUR-Lex dataset and saved model.
