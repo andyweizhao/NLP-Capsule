@@ -35,11 +35,11 @@ parser.add_argument('--start_from', type=str, default='', help='')
 parser.add_argument('--num_compressed_capsule', type=int, default=128, help='The number of compact capsules')
 parser.add_argument('--dim_capsule', type=int, default=16, help='The number of dimensions for capsules')
 
-parser.add_argument('--learning_rate_decay_start', type=int, default=0, 
+parser.add_argument('--learning_rate_decay_start', type=int, default=0,
                     help='at what iteration to start decaying learning rate? (-1 = dont) (in epoch)')
-parser.add_argument('--learning_rate_decay_every', type=int, default=20, 
+parser.add_argument('--learning_rate_decay_every', type=int, default=20,
                     help='how many iterations thereafter to drop LR?(in epoch)')
-parser.add_argument('--learning_rate_decay_rate', type=float, default=0.95, 
+parser.add_argument('--learning_rate_decay_rate', type=float, default=0.95,
                     help='how many iterations thereafter to drop LR?(in epoch)')
 
 
@@ -64,13 +64,13 @@ embedding_weights = load_word2vec('glove', vocabulary_inv, args.vec_size)
 args.num_classes = Y_trn.shape[1]
 
 capsule_net = CapsNet_Text(args, embedding_weights)
-capsule_net = nn.DataParallel(capsule_net).cuda()  
+capsule_net = nn.DataParallel(capsule_net).cuda()
 
 
 def transformLabels(labels):
-    label_index = list(set([l for _ in labels for l in _]))    
+    label_index = list(set([l for _ in labels for l in _]))
     label_index.sort()
-        
+
     variable_num_classes = len(label_index)
     target = []
     for _ in labels:
@@ -90,35 +90,35 @@ def set_lr(optimizer, lr):
 
 for epoch in range(args.num_epochs):
     torch.cuda.empty_cache()
-    
+
     nr_trn_num = X_trn.shape[0]
     nr_batches = int(np.ceil(nr_trn_num / float(args.tr_batch_size)))
-    
+
     if epoch > args.learning_rate_decay_start and args.learning_rate_decay_start >= 0:
         frac = (epoch - args.learning_rate_decay_start) // args.learning_rate_decay_every
         decay_factor = args.learning_rate_decay_rate  ** frac
         current_lr = current_lr * decay_factor
     print(current_lr)
     set_lr(optimizer, current_lr)
-    
+
     capsule_net.train()
     for iteration, batch_idx in enumerate(np.random.permutation(xrange(nr_batches))):
         start = time.time()
         start_idx = batch_idx * args.tr_batch_size
         end_idx = min((batch_idx + 1) * args.tr_batch_size, nr_trn_num)
-        
+
         X = X_trn[start_idx:end_idx]
         Y = Y_trn_o[start_idx:end_idx]
-        data = Variable(torch.from_numpy(X).long()).cuda()            
-            
-        batch_labels, batch_target = transformLabels(Y) 
-        batch_target = Variable(torch.from_numpy(batch_target).float()).cuda()            
-        optimizer.zero_grad()    
+        data = Variable(torch.from_numpy(X).long()).cuda()
+
+        batch_labels, batch_target = transformLabels(Y)
+        batch_target = Variable(torch.from_numpy(batch_target).float()).cuda()
+        optimizer.zero_grad()
         poses, activations = capsule_net(data, batch_labels)
-        loss = BCE_loss(activations, batch_target)            
+        loss = BCE_loss(activations, batch_target)
         loss.backward()
         optimizer.step()
-        torch.cuda.empty_cache()    
+        torch.cuda.empty_cache()
         done = time.time()
         elapsed = done - start
 
@@ -127,11 +127,11 @@ for epoch in range(args.num_epochs):
                       iteration * 100 / nr_batches,
                       loss.item(), elapsed),
                       end="")
-		
+
     torch.cuda.empty_cache()
 
     if (epoch + 1) > 20:
 	checkpoint_path = os.path.join('save', 'model-eur-akde-' + str(epoch + 1) + '.pth')
         torch.save(capsule_net.state_dict(), checkpoint_path)
         print("model saved to {}".format(checkpoint_path))
-	
+
