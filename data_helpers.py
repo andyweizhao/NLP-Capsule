@@ -46,7 +46,7 @@ def pad_sentences(sentences, padding_word="<PAD/>", max_length=500):
 def load_data_and_labels(data):
     x_text = [clean_str(doc['text']) for doc in data]
     x_text = [s.split(" ") for s in x_text]
-    labels = [doc['catgy'] for doc in data]    
+    labels = [doc['catgy'] for doc in data]
     row_idx, col_idx, val_idx = [], [], []
     for i in xrange(len(labels)):
         l_list = list(set(labels[i])) # remove duplicate cateories to avoid double count

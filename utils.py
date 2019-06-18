@@ -20,9 +20,9 @@ def ndcg_at_k(r, k):
 
 
 def get_result(args):
-    
+
     (y_pred, y_true)=args
-    
+
     top_k = 50
     pred_topk_index = sorted(range(len(y_pred)), key=lambda i: y_pred[i], reverse=True)[:top_k]
     pos_index = set([k for k, v in enumerate(y_true) if v == 1])
@@ -40,8 +40,8 @@ def get_result(args):
     return np.array([p_1, p_3, p_5, ndcg_1, ndcg_3, ndcg_5])
 
 def evaluate(Y_tst_pred, Y_tst):
-    pool = Pool(12)    
+    pool = Pool(12)
     results = pool.map(get_result,zip(list(Y_tst_pred), list(Y_tst)))
-    pool.terminate()                
+    pool.terminate()
     tst_result = list(np.mean(np.array(results),0))
     print ('\rTst Prec@1,3,5: ', tst_result[:3], ' Tst NDCG@1,3,5: ', tst_result[3:])
