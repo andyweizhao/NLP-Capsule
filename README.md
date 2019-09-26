@@ -113,13 +113,20 @@ Tst NDCG@1,3,5:  [0.7565329883570504, 0.6674559324640292, 0.6452839523583206]
 # Reference
 If you find our source code useful, please consider citing our work.
 ```
-@inproceedings{zhao2019capsule,
-  title = {Towards Scalable and Reliable Capsule Networks for Challenging NLP Applications},
-  month = {May},
-  year = {2019},
-  author = {Wei Zhao and Haiyun Peng and Steffen Eger and Eric Cambria and Min Yang},
-  address = {Florence, Italy},
-  booktitle = {Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics},
-  url = {http://tubiblio.ulb.tu-darmstadt.de/114295/}
+@inproceedings{zhao2019-towards,
+    title = "Towards Scalable and Reliable Capsule Networks for Challenging {NLP} Applications",
+    author = "Zhao, Wei  and
+      Peng, Haiyun  and
+      Eger, Steffen  and
+      Cambria, Erik  and
+      Yang, Min",
+    booktitle = "Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics",
+    month = jul,
+    year = "2019",
+    address = "Florence, Italy",
+    publisher = "Association for Computational Linguistics",
+    url = "https://www.aclweb.org/anthology/P19-1150",
+    doi = "10.18653/v1/P19-1150",
+    pages = "1549--1559"
 }
 ```
