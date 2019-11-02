@@ -22,9 +22,9 @@ def load_word2vec(model_type, vocabulary_inv, num_features=300):
 
         # dictionary, where key is word, value is word vectors
         embedding_model = {}
-        for line in open(model_name, 'r'):
+        for line in open(model_name, 'r', encoding="utf-8"):
             tmp = line.strip().split()
-            word, vec = tmp[0], map(float, tmp[1:])
+            word, vec = tmp[0], list(map(float, tmp[1:]))
             assert(len(vec) == num_features)
             if word not in embedding_model:
                 embedding_model[word] = vec
