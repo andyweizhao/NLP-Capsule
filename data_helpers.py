@@ -48,7 +48,7 @@ def load_data_and_labels(data):
     x_text = [s.split(" ") for s in x_text]
     labels = [doc['catgy'] for doc in data]
     row_idx, col_idx, val_idx = [], [], []
-    for i in xrange(len(labels)):
+    for i in range(len(labels)):
         l_list = list(set(labels[i])) # remove duplicate cateories to avoid double count
         for y in l_list:
             row_idx.append(i)
