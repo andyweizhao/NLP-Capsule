@@ -102,7 +102,7 @@ for epoch in range(args.num_epochs):
     set_lr(optimizer, current_lr)
 
     capsule_net.train()
-    for iteration, batch_idx in enumerate(np.random.permutation(xrange(nr_batches))):
+    for iteration, batch_idx in enumerate(np.random.permutation(range(nr_batches))):
         start = time.time()
         start_idx = batch_idx * args.tr_batch_size
         end_idx = min((batch_idx + 1) * args.tr_batch_size, nr_trn_num)
