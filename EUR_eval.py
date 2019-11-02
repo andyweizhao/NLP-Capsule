@@ -65,7 +65,7 @@ print(model_name + ' loaded')
 
 model_name = 'model-EUR-CNN-40.pth'
 baseline = CNN_KIM(args, embedding_weights)
-baseline.load_state_dict(torch.load(model_name))
+baseline.load_state_dict(torch.load(os.path.join(args.start_from, model_name)))
 baseline = nn.DataParallel(baseline).cuda()
 print(model_name + ' loaded')
 
@@ -93,12 +93,12 @@ for batch_idx in xrange(nr_batches):
     candidates = candidates.data.cpu().numpy()
 
     Y_pred = np.zeros([candidates.shape[0], args.num_classes])
-    for i in xrange(candidates.shape[0]):
+    for i in range(candidates.shape[0]):
         candidate_labels = candidates[i, :].argsort()[-args.re_ranking:][::-1].tolist()
         _, activations_2nd = capsule_net(data[i, :].unsqueeze(0), candidate_labels)
         Y_pred[i, candidate_labels] = activations_2nd.squeeze(2).data.cpu().numpy()
 
-    for i in xrange(Y_pred.shape[0]):
+    for i in range(Y_pred.shape[0]):
         sorted_idx = np.argpartition(-Y_pred[i, :], top_k)[:top_k]
         row_idx_list += [i + start_idx] * top_k
         col_idx_list += (sorted_idx).tolist()
