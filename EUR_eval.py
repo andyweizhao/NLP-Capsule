@@ -81,7 +81,7 @@ print ('k_tst:', k_tst)
 capsule_net.eval()
 top_k = 50
 row_idx_list, col_idx_list, val_idx_list = [], [], []
-for batch_idx in xrange(nr_batches):
+for batch_idx in range(nr_batches):
     start = time.time()
     start_idx = batch_idx * args.ts_batch_size
     end_idx = min((batch_idx + 1) * args.ts_batch_size, nr_tst_num)
