@@ -20,7 +20,7 @@ The EUR_Cap.py and EUR_eval.py are for training and inference, respectively.
 # Quick start
 
 ```bash
-SET_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python EUR_eval.py
+SET_VISIBLE_DEVICES=0 python EUR_eval.py
 
 SET_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python EUR_Cap.py
 ```
