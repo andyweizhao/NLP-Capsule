@@ -5,7 +5,7 @@ ACL-19: https://www.aclweb.org/anthology/P19-1150/
 Requirements: Code is written in Python 3 and requires Pytorch.
 
 # Preparation
-For quick start, please refer to [the dataset and trained model](https://drive.google.com/open?id=1gPYAMyYo4YLrmx_Egc9wjCqzWx15D7U8)
+For quick start, please download [the dataset and trained model](https://drive.google.com/open?id=1gPYAMyYo4YLrmx_Egc9wjCqzWx15D7U8).
 
 # Code Explanation 
 The data_helpers implements the functions for data processing.
