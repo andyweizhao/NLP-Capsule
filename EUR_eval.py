@@ -58,7 +58,7 @@ args.num_classes = Y_trn.shape[1]
 
 capsule_net = CapsNet_Text(args, embedding_weights)
 capsule_net = nn.DataParallel(capsule_net).cuda()
-model_name = 'model-eur-akde-24.pth'
+model_name = 'model-eur-akde-29.pth'
 capsule_net.load_state_dict(torch.load(os.path.join(args.start_from, model_name)))
 print(model_name + ' loaded')
 
