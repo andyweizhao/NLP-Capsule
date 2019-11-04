@@ -1,11 +1,11 @@
 # Towards Scalable and Reliable Capsule Networks for Challenging NLP Applications
 
-Accepted in ACL-19: https://arxiv.org/abs/1906.02829
+Accepted in ACL-19: https://www.aclweb.org/anthology/P19-1150/
 
 Requirements: Code is written in Python 3 and requires Pytorch.
 
 # Preparation
-For quick start, please refer to the [link](https://drive.google.com/open?id=1gPYAMyYo4YLrmx_Egc9wjCqzWx15D7U8) to download EUR-Lex dataset and saved model.
+For quick start, please refer to [the dataset and trained model] (https://drive.google.com/open?id=1gPYAMyYo4YLrmx_Egc9wjCqzWx15D7U8)
 
 # Code Explanation 
 The data_helpers implements the functions for data processing.
@@ -20,9 +20,9 @@ The EUR_Cap.py and EUR_eval.py are for training and inference, respectively.
 # Quick start
 
 ```bash
-SET_VISIBLE_DEVICES=0 python EUR_eval.py
+CUDA_VISIBLE_DEVICES=0 python EUR_eval.py
 
-SET_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python EUR_Cap.py
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python EUR_Cap.py
 ```
 
 # Performance on EUR-Lex dataset
