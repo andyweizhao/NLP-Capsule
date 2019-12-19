@@ -23,6 +23,8 @@ The EUR_Cap.py and EUR_eval.py are for training and inference, respectively.
 CUDA_VISIBLE_DEVICES=0 python EUR_eval.py
 
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python EUR_Cap.py
+
+CUDA_VISIBLE_DEVICES=0 python EUR_Cap_grad.py # train CapNet on single GPU with accumulation gradient
 ```
 
 # Performance on EUR-Lex dataset
